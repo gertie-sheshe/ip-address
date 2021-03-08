@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Grid,
   FormControl,
@@ -6,10 +7,30 @@ import {
   Button,
 } from "@material-ui/core";
 
+import Map from "../Map/Map";
+
 import useStyles from "./useStyles";
 
 function App() {
   const classes = useStyles();
+  const [domain, setDomain] = useState("");
+  const [long, setLongitude] = useState(-118.24368);
+  const [lat, setLatitude] = useState(34.05223);
+
+  const fetchDomain = async (e) => {
+    e.preventDefault();
+    const API_KEY = process.env.REACT_APP_API_KEY;
+
+    let result = await fetch(
+      `https://geo.ipify.org/api/v1?apiKey=${API_KEY}&domain=${domain}`
+    );
+    let resultJson = await result.json();
+
+    const lat = resultJson.location.lat;
+    const long = resultJson.location.lng;
+    setLongitude(long);
+    setLatitude(lat);
+  };
 
   return (
     <>
@@ -20,21 +41,24 @@ function App() {
         </Grid>
         <Grid container justify="center">
           <FormControl>
-            <form>
+            <form onSubmit={fetchDomain}>
               <InputLabel className={classes.inputLabel} htmlFor="ip-address">
                 Search for any IP address or domain
               </InputLabel>
-              <Input className={classes.input} id="ip-address" />
-              <Button className={classes.submitButton}> > </Button>
+              <Input
+                value={domain}
+                onChange={(e) => setDomain(e.target.value)}
+                className={classes.input}
+                id="ip-address"
+              />
+              <Button type="submit" className={classes.submitButton}>
+                {" "}
+                >{" "}
+              </Button>
             </form>
           </FormControl>
         </Grid>
-        <Grid
-          className={classes.dataContainer}
-          container
-          // justify="center"
-          // alignContent="center"
-        >
+        <Grid className={classes.dataContainer} container>
           <Grid
             container
             direction="column"
@@ -77,7 +101,9 @@ function App() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid className={classes.bgMap}></Grid>
+      <Grid className={classes.bgMap}>
+        <Map lat={lat} long={long} />
+      </Grid>
     </>
   );
 }

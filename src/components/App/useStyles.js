@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   },
   bgMap: {
     height: "70vh",
-    backgroundColor: "pink",
+    // backgroundColor: "pink",
   },
   ipSection: {
     // backgroundColor: "black",
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     borderRadius: "5px 0 0 5px",
     width: "400px",
     "& input": {
-      padding: "9px 0",
+      padding: "9px 6px",
     },
   },
   inputLabel: {
