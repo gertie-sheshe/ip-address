@@ -1,14 +1,22 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { useState } from "react";
 import useStyles from "./useStyles";
 
 const Map = ({ lat, long }) => {
   const classes = useStyles();
+  const [map, setMap] = useState();
+
+  if (map) {
+    map.flyTo([lat, long], 12);
+  }
+
   return (
     <>
       <MapContainer
         className={classes.mapContainer}
         center={[lat, long]}
         zoom={13}
+        whenCreated={(map) => setMap(map)}
         scrollWheelZoom={false}
       >
         <TileLayer

@@ -14,6 +14,10 @@ import useStyles from "./useStyles";
 function App() {
   const classes = useStyles();
   const [domain, setDomain] = useState("");
+  const [isp, setIsp] = useState("");
+  const [ipaddress, setIpAddress] = useState("");
+  const [location, setLocation] = useState("");
+  const [timezone, setTimezone] = useState("");
   const [long, setLongitude] = useState(-118.24368);
   const [lat, setLatitude] = useState(34.05223);
 
@@ -25,6 +29,12 @@ function App() {
       `https://geo.ipify.org/api/v1?apiKey=${API_KEY}&domain=${domain}`
     );
     let resultJson = await result.json();
+
+    // abeg, see nonsense
+    setIsp(resultJson.isp);
+    setIpAddress(resultJson.ip);
+    setLocation(resultJson.location.city);
+    setTimezone(resultJson.location.timezone);
 
     const lat = resultJson.location.lat;
     const long = resultJson.location.lng;
@@ -66,8 +76,10 @@ function App() {
             alignContent="center"
             className={classes.data}
           >
-            <Grid>IP ADDRESS</Grid>
-            <Grid>127.0.0.1</Grid>
+            <Grid>
+              <h3>IP ADDRESS</h3>
+            </Grid>
+            <Grid>{ipaddress}</Grid>
           </Grid>
           <Grid
             container
@@ -76,8 +88,10 @@ function App() {
             alignContent="center"
             className={classes.data}
           >
-            <Grid>LOCATION</Grid>
-            <Grid>Brooklyn, NY 10001</Grid>
+            <Grid>
+              <h3>LOCATION</h3>
+            </Grid>
+            <Grid>{location}</Grid>
           </Grid>
           <Grid
             container
@@ -86,18 +100,22 @@ function App() {
             alignContent="center"
             className={classes.data}
           >
-            <Grid>TIMEZONE</Grid>
-            <Grid>UTC - 05:00</Grid>
+            <Grid>
+              <h3>TIMEZONE</h3>
+            </Grid>
+            <Grid>{`UTC ${timezone}`}</Grid>
           </Grid>
           <Grid
             container
             direction="column"
             justify="center"
             alignContent="center"
-            className={classes.data}
+            className={classes.dataEnd}
           >
-            <Grid>ISP</Grid>
-            <Grid>SpaceX Starlink</Grid>
+            <Grid>
+              <h3>ISP</h3>
+            </Grid>
+            <Grid>{isp}</Grid>
           </Grid>
         </Grid>
       </Grid>

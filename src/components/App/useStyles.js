@@ -47,12 +47,18 @@ const useStyles = makeStyles({
     marginTop: "3%",
     borderRadius: "5px",
     height: "50%",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   },
   data: {
     height: "100%",
     width: "24.89%",
     // backgroundColor: "black",
     borderRight: "solid 1px gray",
+  },
+  dataEnd: {
+    height: "100%",
+    width: "24.89%",
   },
 });
 
