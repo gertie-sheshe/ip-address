@@ -5,7 +5,5 @@ Search a domain or ip address and see what happens. Some random weekend project.
 Technologies: Good ol' React. Leaflet for Map
 
 ## Demo
+[![todotwo.gif](https://i.postimg.cc/nLkBF07Y/todotwo.gif)](https://postimg.cc/JysGK3pG)
 
-[![ipaddress.gif](https://i.postimg.cc/2y0tp4q7/ipaddress.gif)](https://postimg.cc/hQ7sTQ1X)
-
-[![ipaddress.gif](https://i.postimg.cc/2y0tp4q7/ipaddress.gif)](https://postimg.cc/hQ7sTQ1X)
